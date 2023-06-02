@@ -18,6 +18,6 @@ class Renderer
 
     public function render(TwigView $view): string
     {
-        return $this->twig->render($view->getTemplatePath().'.twig', $view->getParameters());
+        return $this->twig->render($view->getTemplatePath().'.html.twig', $view->getParameters());
     }
 }

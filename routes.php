@@ -1,5 +1,7 @@
 <?php
 
+use EShop\Controller\ProductController;
+
 return[
-    ['GET', '/', [ArticleController::class, 'index']],
+    ['GET', '/', [ProductController::class, 'index']],
 ];

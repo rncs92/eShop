@@ -1,10 +1,10 @@
 <?php
 
+use EShop\Repository\Product\PDOProductRepository;
+use EShop\Repository\Product\ProductRepository;
 
 return [
     'classes' => [
-        ArticleRepository::class => DI\create(DatabaseArticleRepository::class),
-        UserRepository::class => DI\create(DatabaseUserRepository::class),
-        CommentRepository::class => DI\create(DatabaseCommentRepository::class),
+        ProductRepository::class => new PDOProductRepository(),
     ],
 ];

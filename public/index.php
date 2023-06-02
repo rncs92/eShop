@@ -10,6 +10,8 @@ use Twig\Loader\FilesystemLoader;
 
 require_once '../vendor/autoload.php';
 
+session_start();
+
 $dotenv = Dotenv\Dotenv::createImmutable('../');
 $dotenv->load();
 
