@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>News Feed</title>
 </head>
+<!-- header -->
 <div class="header-2">
     <nav class="bg-red-100 py-2 md:py-4">
         <div class="container px-4 mx-auto md:flex md:items-center">
@@ -18,25 +19,23 @@
                 <button class="border border-solid border-gray-600 px-3 py-1 rounded text-gray-600 opacity-50 hover:opacity-75 md:hidden" id="navbar-toggle">
                 </button>
             </div>
-
             <div class="hidden md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0" id="navbar-collapse">
-                <a href="#" class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">Login</a>
-                <a href="#" class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-solid border-red-500 rounded hover:bg-red-500 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">Signup</a>
+                <a href="/add" class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">Add</a>
+                <a href="#" class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-solid border-red-500 rounded hover:bg-red-500 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1" id="#delete-product-btn">Mass Delete</a>
             </div>
         </div>
     </nav>
 </div>
-
+<body class="bg-zinc-100">
 <div class="text-center p-10">
     <h1 class="font-bold text-4xl mb-4">Product List</h1>
-    <h1 class="text-3xl">Tailwind CSS</h1>
 </div>
 
-<!-- ✅ Grid Section - Starts Here 👇 -->
+<!-- Grid Section -->
 <section id="Projects"
-         class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+         class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-5 mb-5">
 
-    <!--   ✅ Product card 1 - Starts Here 👇 -->
+    <!-- Product card 1 -->
     <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
             <img src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -59,9 +58,9 @@
             </div>
         </a>
     </div>
-    <!--   🛑 Product card 1 - Ends Here  -->
+    <!-- Product card 1 - Ends Here -->
 
-    <!--   ✅ Product card 2 - Starts Here 👇 -->
+    <!-- Product card 2 - Starts Here -->
     <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
             <img src="https://images.unsplash.com/photo-1651950519238-15835722f8bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -84,9 +83,9 @@
             </div>
         </a>
     </div>
-    <!--   🛑 Product card 2- Ends Here  -->
+    <!-- Product card 2- Ends Here -->
 
-    <!--   ✅ Product card 3 - Starts Here 👇 -->
+    <!-- Product card 3 - Starts Here -->
     <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
             <img src="https://images.unsplash.com/photo-1651950537598-373e4358d320?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -109,9 +108,9 @@
             </div>
         </a>
     </div>
-    <!--   🛑 Product card 3 - Ends Here  -->
+    <!-- Product card 3 - Ends Here -->
 
-    <!--   ✅ Product card 4 - Starts Here 👇 -->
+    <!-- Product card 4 - Starts Here -->
     <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
             <img src="https://images.unsplash.com/photo-1651950540805-b7c71869e689?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -137,10 +136,10 @@
             </div>
         </a>
     </div>
-    <!--   🛑 Product card 4 - Ends Here  -->
+    <!-- Product card 4 - Ends Here -->
 </section>
-
-<!-- 🛑 Grid Section - Ends Here -->
+</body>
+<!-- Grid Section - Ends Here -->
 <script>
     kofiWidgetOverlay.draw('mohamedghulam', {
         'type': 'floating-chat',
