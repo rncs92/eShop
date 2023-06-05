@@ -1,14 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace EShop\Repository\Product;
+namespace EShop\Repository\FurnitureRepository;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
 use EShop\Core\Database;
-use EShop\Models\Products\Book;
+use EShop\Models\Products\Furniture;
 use EShop\Models\Products\Product;
+use EShop\Repository\Product\ProductRepository;
 
-class PDOProductRepository implements ProductRepository
+class PDOFurnitureRepository implements ProductRepository
 {
     private QueryBuilder $queryBuilder;
     private Connection $connection;
@@ -27,8 +28,8 @@ class PDOProductRepository implements ProductRepository
             ->fetchAllAssociative();
 
         $collection = [];
-        foreach($products as $product) {
-            $collection[] = $this->buildModel($product);
+        foreach ($products as $product) {
+            $collection[] = $this->buildFurnitureModel($product);
         }
 
         return $collection;
@@ -44,26 +45,29 @@ class PDOProductRepository implements ProductRepository
                     'sku' => '?',
                     'name' => '?',
                     'price' => '?',
-                    'attributes' => '?'
+                    'product_type' => '?',
+                    'attribute' => '?'
                 ]
             )
             ->setParameter(0, $product->getSku())
             ->setParameter(1, $product->getName())
             ->setParameter(2, $product->getPrice())
-            ->setParameter(3, $product->getAttribute());
+            ->setParameter(3, $product->getProductType())
+            ->setParameter(4, $product->getAttribute());
 
         $queryBuilder->executeQuery();
 
         $product->setId((int)$this->connection->lastInsertId());
     }
 
-    private function buildModel($product): Product
+    private function buildFurnitureModel($furniture): Product
     {
-        return new Product(
-            $product['sku'],
-            $product['name'],
-            $product['price'],
-            $product['attributes']
+        return new Furniture(
+            $furniture['sku'],
+            $furniture['name'],
+            (int)$furniture['price'],
+            $furniture['product_type'],
+            $furniture['attribute']
         );
     }
 }

@@ -2,25 +2,29 @@
 
 namespace EShop\Models\Products;
 
-class Product
+abstract class Product
 {
-    private string $sku;
-    private string $name;
-    private int $price;
+    protected string $sku;
+    protected string $name;
+    protected int $price;
+    protected string $productType;
     private string $attribute;
     private ?int $id;
+
 
     public function __construct(
         string $sku,
         string $name,
-        int $price,
+        int    $price,
+        string $productType,
         string $attribute,
-        int $id = null
+        int    $id = null
     )
     {
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
+        $this->productType = $productType;
         $this->attribute = $attribute;
         $this->id = $id;
     }
@@ -40,6 +44,11 @@ class Product
         return $this->price;
     }
 
+    public function getProductType(): string
+    {
+        return $this->productType;
+    }
+
     public function getAttribute(): string
     {
         return $this->attribute;
@@ -54,5 +63,4 @@ class Product
     {
         $this->id = $id;
     }
-
 }

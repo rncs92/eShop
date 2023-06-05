@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>News Feed</title>
+    <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous"></script>
+    <title>scandiweb eShop</title>
 </head>
 <!-- header -->
 <div class="header-2">
@@ -21,10 +25,6 @@
                 </button>
             </div>
             <div class="hidden md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0" id="navbar-collapse">
-                <button type="submit">
-                    <a href="/add"
-                       class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">Save</a>
-                </button>
                 <a href="/"
                    class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-solid border-red-500 rounded hover:bg-red-500 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1"
                    id="#delete-product-btn">Cancel</a>
@@ -39,7 +39,7 @@
 
 <div class="flex">
     <div class="w-2/4 bg-gray-100">
-        <form id="product_form" method="POST" action="/add">
+        <form id="product_form" method="POST" action="/">
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/5">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
@@ -73,7 +73,7 @@
                 <div class="md:w-2/4">
                     <label for="price"></label><input
                             class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            id="price" name="price" type="text" placeholder="Price" required>
+                            id="price" name="price" type="number" placeholder="Price" required>
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
@@ -85,13 +85,33 @@
                 <div class="md:w-2/4">
                     <label>
                         <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                id="productType" name="attributes">
+                                id="productType" name="productType">
                             <option id="dvd" name="dvd">DVD</option>
                             <option id="book" name="book">Book</option>
                             <option id="furniture" name="furniture">Furniture</option>
                         </select>
                     </label>
                 </div>
+                <div class="w-2/4 bg-gray-100" id="attributes">
+                        <label for="size"></label><input
+                                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                type="number" name="size" id="size" placeholder="DVD">
+                        <label for="weight"></label><input
+                                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                type="number" name="weight" id="weight" placeholder="Book">
+                        <label for="height"></label><input
+                                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                type="number" name="height" id="height" placeholder="Height">
+                        <label for="width"></label><input
+                                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                type="number" name="width" id="width" placeholder="Width">
+                        <label for="length"></label><input
+                                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                type="number" name="length" id="length" placeholder="Length">
+                </div>
+            </div>
+            <div class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">
+                <button type="submit" name="submit">Save</button>
             </div>
         </form>
     </div>
@@ -99,5 +119,33 @@
         <!-- Content for the right half of the page -->
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        // Function to generate the dynamic form fields
+        function generateDynamicFields() {
+            const selectedType = $('#productType').val();
+            let dynamicFields = '';
+
+            if (selectedType === 'DVD') {
+                dynamicFields += '<input type="number" name="size" id="size" placeholder="Size (MB)">';
+            } else if (selectedType === 'Book') {
+                dynamicFields += '<input type="number" name="weight" id="weight" placeholder="Weight (KG)">';
+            } else if (selectedType === 'Furniture') {
+                dynamicFields += '<input type="number" name="height" id="height" placeholder="Furniture Height (CM)">';
+                dynamicFields += '<input type="number" name="width" id="width" placeholder="Furniture Width (CM)">';
+                dynamicFields += '<input type="number" name="length" id="length" placeholder="Furniture Length (CM)">';
+
+            }
+
+            $('#attributes').html(dynamicFields);
+        }
+
+        // Trigger the form field generation whenever the product type selection changes
+        $('#productType').on('change', generateDynamicFields);
+
+        // Call the function initially to set up the form fields based on the default product type
+        generateDynamicFields();
+    });
+</script>
 </body>
 </html>
