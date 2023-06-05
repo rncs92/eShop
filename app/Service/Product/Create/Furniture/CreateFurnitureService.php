@@ -3,16 +3,16 @@
 namespace EShop\Service\Product\Create\Furniture;
 
 use EShop\Models\Products\Furniture;
-use EShop\Repository\FurnitureRepository\FurnitureRepository;
+use EShop\Repository\ProductRepository\ProductRepository;
 use EShop\Service\Product\Create\Product\CreateProductRequest;
 
 class CreateFurnitureService
 {
-    private FurnitureRepository $furnitureRepository;
+    private ProductRepository $productRepository;
 
-    public function __construct(FurnitureRepository $furnitureRepository)
+    public function __construct(ProductRepository $productRepository)
     {
-        $this->furnitureRepository = $furnitureRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function handle(CreateProductRequest $request): CreateFurnitureResponse
@@ -25,7 +25,7 @@ class CreateFurnitureService
             $request->getAttributes()
         );
 
-        $this->furnitureRepository->insert($furniture);
+        $this->productRepository->insert($furniture);
 
         return new CreateFurnitureResponse($furniture);
     }

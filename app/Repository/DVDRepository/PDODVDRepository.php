@@ -22,41 +22,19 @@ class PDODVDRepository implements DVDRepository
     public function all(): array
     {
         $queryBuilder = $this->queryBuilder;
-        $products = $queryBuilder->select('*')
+        $dvds = $queryBuilder
+            ->select('*')
             ->from('products')
+            ->where('product_type = ?')
+            ->setParameter(0, 'DVD')
             ->fetchAllAssociative();
 
         $collection = [];
-        foreach($products as $product) {
-            $collection[] = $this->buildDVDModel($product);
+        foreach($dvds as $dvd) {
+            $collection[] = $this->buildDVDModel($dvd);
         }
 
         return $collection;
-    }
-
-    public function insert(Product $product): void
-    {
-        $queryBuilder = $this->queryBuilder;
-        $queryBuilder
-            ->insert('products')
-            ->values(
-                [
-                    'sku' => '?',
-                    'name' => '?',
-                    'price' => '?',
-                    'product_type' => '?',
-                    'attribute' => '?'
-                ]
-            )
-            ->setParameter(0, $product->getSku())
-            ->setParameter(1, $product->getName())
-            ->setParameter(2, $product->getPrice())
-            ->setParameter(3, $product->getProductType())
-            ->setParameter(4, $product->getAttribute());
-
-        $queryBuilder->executeQuery();
-
-        $product->setId((int)$this->connection->lastInsertId());
     }
 
     private function buildDVDModel($dvd): Product
@@ -66,7 +44,8 @@ class PDODVDRepository implements DVDRepository
             $dvd['name'],
             (int)$dvd['price'],
             $dvd['product_type'],
-            $dvd['attribute']
+            $dvd['attribute'],
+            $dvd['id']
         );
     }
 }

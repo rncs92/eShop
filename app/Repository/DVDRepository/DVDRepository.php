@@ -8,5 +8,4 @@ interface DVDRepository
 {
     public function all(): array;
 
-    public function insert(Product $product): void;
 }

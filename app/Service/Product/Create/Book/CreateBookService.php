@@ -3,17 +3,16 @@
 namespace EShop\Service\Product\Create\Book;
 
 use EShop\Models\Products\Book;
-use EShop\Repository\BookRepository\BookRepository;
+use EShop\Repository\ProductRepository\ProductRepository;
 use EShop\Service\Product\Create\Product\CreateProductRequest;
 
 class CreateBookService
 {
-    private BookRepository $bookRepository;
+    private ProductRepository $productRepository;
 
-    public function __construct(BookRepository $bookRepository)
+    public function __construct(ProductRepository $productRepository)
     {
-
-        $this->bookRepository = $bookRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function handle(CreateProductRequest $request): CreateBookResponse
@@ -26,7 +25,7 @@ class CreateBookService
             $request->getAttributes()
         );
 
-        $this->bookRepository->insert($book);
+        $this->productRepository->insert($book);
 
         return new CreateBookResponse($book);
     }

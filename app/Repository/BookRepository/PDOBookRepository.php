@@ -70,3 +70,42 @@ class PDOBookRepository implements BookRepository
         );
     }
 }
+
+/*
+ * $collection = [];
+        $queryBuilder = $this->queryBuilder;
+        $dvds = $queryBuilder
+            ->select('*')
+            ->from('products')
+            ->where('product_type = ?')
+            ->setParameter(0, 'DVD')
+            ->fetchAllAssociative();
+
+        foreach($dvds as $dvd) {
+            $collection[] = $this->buildDVDModel($dvd);
+        }
+
+        $books = $queryBuilder
+            ->select('*')
+            ->from('products')
+            ->where('product_type = ?')
+            ->setParameter(0, 'Book')
+            ->fetchAllAssociative();
+
+        foreach($books as $book) {
+            $collection[] = $this->buildBookModel($book);
+        }
+
+        $furnitures = $queryBuilder
+            ->select('*')
+            ->from('products')
+            ->where('product_type = ?')
+            ->setParameter(0, 'Furniture')
+            ->fetchAllAssociative();
+
+        foreach($furnitures as $furniture) {
+            $collection[] = $this->buildFurnitureModel($furniture);
+        }
+
+        return $collection;
+ */
