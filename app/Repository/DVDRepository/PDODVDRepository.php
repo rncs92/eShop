@@ -7,9 +7,8 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use EShop\Core\Database;
 use EShop\Models\Products\DVD;
 use EShop\Models\Products\Product;
-use EShop\Repository\Product\ProductRepository;
 
-class PDODVDRepository implements ProductRepository
+class PDODVDRepository implements DVDRepository
 {
     private QueryBuilder $queryBuilder;
     private Connection $connection;

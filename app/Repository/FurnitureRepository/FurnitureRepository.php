@@ -1,10 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace EShop\Repository\Product;
+namespace EShop\Repository\FurnitureRepository;
 
 use EShop\Models\Products\Product;
 
-interface ProductRepository
+interface FurnitureRepository
 {
     public function all(): array;
 

@@ -7,9 +7,8 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use EShop\Core\Database;
 use EShop\Models\Products\Furniture;
 use EShop\Models\Products\Product;
-use EShop\Repository\Product\ProductRepository;
 
-class PDOFurnitureRepository implements ProductRepository
+class PDOFurnitureRepository implements FurnitureRepository
 {
     private QueryBuilder $queryBuilder;
     private Connection $connection;

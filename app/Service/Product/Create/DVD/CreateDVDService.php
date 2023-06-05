@@ -3,16 +3,16 @@
 namespace EShop\Service\Product\Create\DVD;
 
 use EShop\Models\Products\DVD;
-use EShop\Repository\Product\ProductRepository;
+use EShop\Repository\DVDRepository\DVDRepository;
 use EShop\Service\Product\Create\Product\CreateProductRequest;
 
 class CreateDVDService
 {
-    private ProductRepository $productRepository;
+    private DVDRepository $DVDRepository;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(DVDRepository $DVDRepository)
     {
-        $this->productRepository = $productRepository;
+        $this->DVDRepository = $DVDRepository;
     }
 
     public function handle(CreateProductRequest $request): CreateDVDResponse
@@ -25,7 +25,7 @@ class CreateDVDService
             $request->getAttributes()
         );
 
-        $this->productRepository->insert($dvd);
+        $this->DVDRepository->insert($dvd);
 
         return new CreateDVDResponse($dvd);
     }
