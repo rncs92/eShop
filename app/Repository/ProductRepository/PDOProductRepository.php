@@ -98,6 +98,17 @@ class PDOProductRepository implements ProductRepository
         );
     }
 
+    public function delete(int $productId): void
+    {
+        $queryBuilder = $this->queryBuilder;
+        $queryBuilder
+            ->delete('products')
+            ->where('id = ?')
+            ->setParameter(0, $productId);
+
+        $queryBuilder->executeQuery();
+    }
+
     private function buildFurnitureModel($furniture): Product
     {
         return new Furniture(

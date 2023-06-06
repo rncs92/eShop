@@ -7,5 +7,7 @@ return[
     ['GET', '/', [ProductController::class, 'index']],
     //Create Product
     ['GET', '/add', [ProductController::class, 'add']],
-    ['POST', '/', [ProductController::class, 'store']],
+    ['POST', '/add', [ProductController::class, 'store']],
+    //Delete Product
+    ['POST', '/', [ProductController::class, 'delete']],
 ];
