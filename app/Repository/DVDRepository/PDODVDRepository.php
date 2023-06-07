@@ -42,7 +42,7 @@ class PDODVDRepository implements DVDRepository
         return new DVD(
             $dvd['sku'],
             $dvd['name'],
-            (int)$dvd['price'],
+            (float)$dvd['price'],
             $dvd['product_type'],
             $dvd['attribute'],
             $dvd['id']

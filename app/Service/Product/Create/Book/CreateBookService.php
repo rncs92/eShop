@@ -17,6 +17,7 @@ class CreateBookService
 
     public function handle(CreateProductRequest $request): CreateBookResponse
     {
+
         $book = new Book(
             $request->getSku(),
             $request->getName(),

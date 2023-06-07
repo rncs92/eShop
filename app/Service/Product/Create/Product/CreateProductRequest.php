@@ -6,7 +6,7 @@ class CreateProductRequest
 {
     private string $sku;
     private string $name;
-    private int $price;
+    private float $price;
     private string $productType;
     private string $attributes;
 
@@ -14,7 +14,7 @@ class CreateProductRequest
     public function __construct(
         string $sku,
         string $name,
-        int    $price,
+        float  $price,
         string $productType,
         string $attributes
     )
@@ -36,7 +36,7 @@ class CreateProductRequest
         return $this->name;
     }
 
-    public function getPrice(): int
+    public function getPrice(): float
     {
         return $this->price;
     }

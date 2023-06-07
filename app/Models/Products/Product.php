@@ -6,7 +6,7 @@ abstract class Product
 {
     protected string $sku;
     protected string $name;
-    protected int $price;
+    protected float $price;
     protected string $productType;
     private string $attribute;
     private ?int $id;
@@ -15,7 +15,7 @@ abstract class Product
     public function __construct(
         string $sku,
         string $name,
-        int    $price,
+        float  $price,
         string $productType,
         string $attribute,
         int    $id = null
@@ -39,7 +39,7 @@ abstract class Product
         return $this->name;
     }
 
-    public function getPrice(): int
+    public function getPrice(): float
     {
         return $this->price;
     }

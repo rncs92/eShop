@@ -31,7 +31,7 @@
 
 <div class="flex">
     <div class="w-2/4 bg-gray-100">
-        <form id="product_form" method="POST" action="/add">
+        <form id="product_form" method="POST" action="/addproduct">
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/5">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
@@ -65,7 +65,7 @@
                 <div class="md:w-2/4">
                     <label for="price"></label><input
                             class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            id="price" name="price" type="number" placeholder="Price" required>
+                            id="price" name="price" type="number" step="0.01" placeholder="Price" required>
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
@@ -84,31 +84,30 @@
                         </select>
                     </label>
                 </div>
-                <div class="w-2/4 bg-gray-100" id="attributes">
-                    <label for="size"></label><input
-                            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            type="number" name="size" id="size" placeholder="DVD">
-                    <label for="weight"></label><input
-                            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            type="number" name="weight" id="weight" placeholder="Book">
-                    <label for="height"></label><input
-                            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            type="number" name="height" id="height" placeholder="Height">
-                    <label for="width"></label><input
-                            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            type="number" name="width" id="width" placeholder="Width">
-                    <label for="length"></label><input
-                            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            type="number" name="length" id="length" placeholder="Length">
-                </div>
             </div>
-            <div class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">
+            <div class="place-self-center p-2 lg:px-4 md:mx-56 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">
                 <button type="submit" name="submit">Save</button>
             </div>
         </form>
     </div>
     <div class="w-1/2">
-        <!-- Content for the right half of the page -->
+        <div class="w-2/4  bg-gray-100" id="attributes">
+            <label for="size"></label><input
+                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    type="number" name="size" id="size" placeholder="DVD">
+            <label for="weight"></label><input
+                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    type="number" name="weight" id="weight" placeholder="Book">
+            <label for="height"></label><input
+                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    type="number" name="height" id="height" placeholder="Height">
+            <label for="width"></label><input
+                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    type="number" name="width" id="width" placeholder="Width">
+            <label for="length"></label><input
+                    class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    type="number" name="length" id="length" placeholder="Length">
+        </div>
     </div>
 </div>
 <script>
@@ -119,13 +118,13 @@
             let dynamicFields = '';
 
             if (selectedType === 'DVD') {
-                dynamicFields += '<input type="number" name="size" id="size" placeholder="Size (MB)">';
+                dynamicFields += '<div class="flex"><label class="block text-gray-500 font-bold md:text-right mb-2 pt-2 md:mb-0 pr-4">Size:</label><input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="number" name="size" id="size" placeholder="Size (MB)"></div>';
             } else if (selectedType === 'Book') {
-                dynamicFields += '<input type="number" name="weight" id="weight" placeholder="Weight (KG)">';
+                dynamicFields += '<div class="flex"><label class="block text-gray-500 font-bold md:text-right mb-2 pt-2 md:mb-0 pr-4">Weight:</label><input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="number" name="weight" id="weight" placeholder="Weight (KG)"></div>';
             } else if (selectedType === 'Furniture') {
-                dynamicFields += '<input type="number" name="height" id="height" placeholder="Furniture Height (CM)">';
-                dynamicFields += '<input type="number" name="width" id="width" placeholder="Furniture Width (CM)">';
-                dynamicFields += '<input type="number" name="length" id="length" placeholder="Furniture Length (CM)">';
+                dynamicFields += '<div class="flex mb-2"><label class="block text-gray-500 font-bold md:text-right mb-2 pt-2 md:mb-0 pr-4">Height:</label><input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="number" name="height" id="height" placeholder="Height (CM)"></div>';
+                dynamicFields += '<div class="flex mb-2"><label class="block text-gray-500 font-bold md:text-right mb-2 pt-2 md:mb-0 pr-4">Width:</label><input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="number" name="width" id="width" placeholder="Width (CM)"></div>';
+                dynamicFields += '<div class="flex mb-2"><label class="block text-gray-500 font-bold md:text-right mb-2 pt-2 md:mb-0 pr-4">Length:</label><input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="number" name="length" id="length" placeholder="Length (CM)"></div>';
 
             }
 

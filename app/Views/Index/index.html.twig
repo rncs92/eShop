@@ -26,9 +26,9 @@
             <div>
                 <button name="add_btn" id="add-btn"
                         class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">
-                    <a href="/add">Add</a>
+                    <a href="/addproduct">Add</a>
                 </button>
-                <button type="submit" name="mass_delete_btn" id="mass-delete-btn" value="1"
+                <button type="submit" name="delete-product-btn" id="delete-product-btn" value="1"
                         class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-solid border-red-500 rounded hover:bg-red-500 hover:text-white transition-colors duration-300">
                     Mass Delete
                 </button>
@@ -40,7 +40,7 @@
                 <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                     <div class="px-4 py-3 w-72">
                         <label>
-                            <input type="checkbox" name="checkbox[]" value="{{ product.id }}"
+                            <input id="delete-checkbox" type="checkbox" name="checkbox[]" value="{{ product.id }}"
                                    class="delete-checkbox h-5 w-5 text-indigo-600 top-2 right-2">
                         </label>
                         <img src="https://placehold.co/80x72?text=Product" alt="Product"
@@ -48,7 +48,7 @@
                         <p class="text-gray-500 mr-3 uppercase text-base text-center">{{ product.sku }}</p>
                         <p class="text-lg font-bold text-black truncate block capitalize text-center my-1">{{ product.name }}</p>
                         <div class="flex items-center justify-center">
-                            <p class="text-lg font-medium text-black cursor-auto my-1">${{ product.price }}</p>
+                            <p class="text-lg font-medium text-black cursor-auto my-1">${{ product.price|number_format(2, '.') }}</p>
                         </div>
                         {% if product.getProductType == "DVD" %}
                             <div class="flex items-center justify-center">

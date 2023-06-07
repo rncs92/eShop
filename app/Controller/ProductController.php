@@ -56,7 +56,7 @@ class ProductController
                 new CreateProductRequest(
                     $_POST['sku'],
                     $_POST['name'],
-                    (int)$_POST['price'],
+                    (float)$_POST['price'],
                     $_POST['productType'],
                     $_POST['size'] . ' MB'
                 )
@@ -69,7 +69,7 @@ class ProductController
                 new CreateProductRequest(
                     $_POST['sku'],
                     $_POST['name'],
-                    (int)$_POST['price'],
+                    (float)$_POST['price'],
                     $_POST['productType'],
                     $_POST['weight'] . ' kg'
                 )
@@ -82,7 +82,7 @@ class ProductController
                 new CreateProductRequest(
                     $_POST['sku'],
                     $_POST['name'],
-                    (int)number_format($_POST['price'], 2, '.'),
+                    (float)$_POST['price'],
                     $_POST['productType'],
                     $_POST['height'] . 'x' . $_POST['width'] . 'x' . $_POST['length']
                 )
@@ -95,7 +95,7 @@ class ProductController
 
     public function delete(): Redirect
     {
-        if (isset($_POST['mass_delete_btn'])) {
+        if (isset($_POST['delete-product-btn'])) {
             foreach ((array)$_POST['checkbox'] as $productId) {
                 $this->deleteProductService->handle((int)$productId);
             }

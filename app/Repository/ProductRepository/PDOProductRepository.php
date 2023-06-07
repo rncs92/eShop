@@ -102,7 +102,7 @@ class PDOProductRepository implements ProductRepository
         return new DVD(
             $dvd['sku'],
             $dvd['name'],
-            (int)$dvd['price'],
+            (float)$dvd['price'],
             $dvd['product_type'],
             $dvd['attribute'],
             $dvd['id']
@@ -114,7 +114,7 @@ class PDOProductRepository implements ProductRepository
         return new Book(
             $book['sku'],
             $book['name'],
-            (int)$book['price'],
+            (float)$book['price'],
             $book['product_type'],
             $book['attribute'],
             $book['id']
@@ -126,7 +126,7 @@ class PDOProductRepository implements ProductRepository
         return new Furniture(
             $furniture['sku'],
             $furniture['name'],
-            (int)$furniture['price'],
+            (float)$furniture['price'],
             $furniture['product_type'],
             $furniture['attribute'],
             $furniture['id']

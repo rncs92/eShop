@@ -64,7 +64,7 @@ class PDOBookRepository implements BookRepository
         return new Book(
             $book['sku'],
             $book['name'],
-            (int)$book['price'],
+            (float)$book['price'],
             $book['product_type'],
             $book['attribute']
         );
