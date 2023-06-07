@@ -32,7 +32,7 @@ class PDOProductRepository implements ProductRepository
             ->setParameter(0, 'DVD')
             ->fetchAllAssociative();
 
-        foreach($dvds as $dvd) {
+        foreach ($dvds as $dvd) {
             $collection[] = $this->buildDVDModel($dvd);
         }
 
@@ -43,7 +43,7 @@ class PDOProductRepository implements ProductRepository
             ->setParameter(0, 'Book')
             ->fetchAllAssociative();
 
-        foreach($books as $book) {
+        foreach ($books as $book) {
             $collection[] = $this->buildBookModel($book);
         }
 
@@ -54,10 +54,9 @@ class PDOProductRepository implements ProductRepository
             ->setParameter(0, 'Furniture')
             ->fetchAllAssociative();
 
-        foreach($furnitures as $furniture) {
+        foreach ($furnitures as $furniture) {
             $collection[] = $this->buildFurnitureModel($furniture);
         }
-
         return $collection;
     }
 
@@ -86,17 +85,6 @@ class PDOProductRepository implements ProductRepository
         $product->setId((int)$this->connection->lastInsertId());
     }
 
-    private function buildDVDModel($dvd): Product
-    {
-        return new DVD(
-            $dvd['sku'],
-            $dvd['name'],
-            (int)$dvd['price'],
-            $dvd['product_type'],
-            $dvd['attribute'],
-            $dvd['id']
-        );
-    }
 
     public function delete(int $productId): void
     {
@@ -109,15 +97,15 @@ class PDOProductRepository implements ProductRepository
         $queryBuilder->executeQuery();
     }
 
-    private function buildFurnitureModel($furniture): Product
+    private function buildDVDModel($dvd): Product
     {
-        return new Furniture(
-            $furniture['sku'],
-            $furniture['name'],
-            (int)$furniture['price'],
-            $furniture['product_type'],
-            $furniture['attribute'],
-            $furniture['id']
+        return new DVD(
+            $dvd['sku'],
+            $dvd['name'],
+            (int)$dvd['price'],
+            $dvd['product_type'],
+            $dvd['attribute'],
+            $dvd['id']
         );
     }
 
@@ -130,6 +118,18 @@ class PDOProductRepository implements ProductRepository
             $book['product_type'],
             $book['attribute'],
             $book['id']
+        );
+    }
+
+    private function buildFurnitureModel($furniture): Product
+    {
+        return new Furniture(
+            $furniture['sku'],
+            $furniture['name'],
+            (int)$furniture['price'],
+            $furniture['product_type'],
+            $furniture['attribute'],
+            $furniture['id']
         );
     }
 }

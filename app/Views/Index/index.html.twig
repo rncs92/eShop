@@ -10,61 +10,69 @@
 <!-- header -->
 <div class="header-2">
     <nav class="bg-red-100 py-2 md:py-4">
-        <div class="container px-4 mx-auto md:flex md:items-center">
-
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <a href="/" class="font-bold text-xl text-red-500">scandiweb</a>
-                </div>
-                <button class="border border-solid border-gray-600 px-3 py-1 rounded text-gray-600 opacity-50 hover:opacity-75 md:hidden"
-                        id="navbar-toggle">
-                </button>
-            </div>
-            <div class="hidden md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0" id="navbar-collapse">
-                <a href="/add"
-                   class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">Add</a>
-                <button type="submit" id="mass-delete-btn"
-                        class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-solid border-red-500 rounded hover:bg-red-500 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">
-                    Mass Delete
-                </button>
+        <div class="container mx-auto">
+            <div class="flex justify-center items-center">
+                <a href="/" class="font-bold text-4xl text-red-500">scandiweb</a>
             </div>
         </div>
     </nav>
 </div>
 <body class="bg-zinc-100">
-<div class="text-center p-10">
-    <h1 class="font-bold text-4xl mb-4">Product List</h1>
-</div>
-
 <!-- Grid Section -->
-<form action="/" method="POST" id="mass-delete-form">
-    <section id="Projects"
-             class="w-fit mx-auto grid lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-5 mb-5">
-        {% for product in products %}
-            <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                <div class="px-4 py-3 w-72">
-                    <label>
-                        <input type="checkbox" name="checkbox[]" value="{{ product.id }}"
-                               class="delete-checkbox h-5 w-5 text-indigo-600 top-2 right-2">
-                    </label>
-                    <img src="https://placehold.co/80x72?text=Product" alt="Product"
-                         class="h-80 w-72 object-cover rounded-t-xl"/>
-                    <span class="text-gray-400 mr-3 uppercase text-xs">{{ product.sku }}</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">{{ product.name }}</p>
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black cursor-auto my-3">${{ product.price }}</p>
-                    </div>
-                    <div class="flex items-right">
-                        <p class="text-rg font-semibold text-black cursor-auto my-3">{{ product.attribute }}</p>
+<div class="flex justify-center mt-10">
+    <form action="/" method="POST" id="mass-delete-form" class="inline-block">
+        <div class="text-right flex justify-between items-center">
+            <h1 class="font-bold text-4xl">Product List</h1>
+            <div>
+                <button name="add_btn" id="add-btn"
+                        class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">
+                    <a href="/add">Add</a>
+                </button>
+                <button type="submit" name="mass_delete_btn" id="mass-delete-btn" value="1"
+                        class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-solid border-red-500 rounded hover:bg-red-500 hover:text-white transition-colors duration-300">
+                    Mass Delete
+                </button>
+            </div>
+        </div>
+        <section id="Projects"
+                 class="w-fit mx-auto grid lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-5 mb-5">
+            {% for product in products %}
+                <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+                    <div class="px-4 py-3 w-72">
+                        <label>
+                            <input type="checkbox" name="checkbox[]" value="{{ product.id }}"
+                                   class="delete-checkbox h-5 w-5 text-indigo-600 top-2 right-2">
+                        </label>
+                        <img src="https://placehold.co/80x72?text=Product" alt="Product"
+                             class="h-80 w-72 object-cover rounded-t-xl">
+                        <p class="text-gray-500 mr-3 uppercase text-base text-center">{{ product.sku }}</p>
+                        <p class="text-lg font-bold text-black truncate block capitalize text-center my-1">{{ product.name }}</p>
+                        <div class="flex items-center justify-center">
+                            <p class="text-lg font-medium text-black cursor-auto my-1">${{ product.price }}</p>
+                        </div>
+                        {% if product.getProductType == "DVD" %}
+                            <div class="flex items-center justify-center">
+                                Size: <p
+                                        class="text-rg font-medium text-black cursor-auto my-1">{{ product.attribute }}</p>
+                            </div>
+                        {% endif %}
+                        {% if product.getProductType == "Book" %}
+                            <div class="flex items-center justify-center">
+                                Weight: <p
+                                        class="text-rg font-medium text-black cursor-auto my-1">{{ product.attribute }}</p>
+                            </div>
+                        {% endif %}
+                        {% if product.getProductType == "Furniture" %}
+                            <div class="flex items-center justify-center">
+                                Dimensions: <p
+                                        class="text-rg font-medium text-black cursor-auto my-1">{{ product.attribute }}</p>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </section>
-    <button type="submit" name="mass_delete_btn" id="mass-delete-btn" value="1"
-            class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-solid border-red-500 rounded hover:bg-red-500 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">
-        Mass Delete
-    </button>
-</form>
+            {% endfor %}
+        </section>
+    </form>
+</div>
 </body>
 </html>

@@ -58,7 +58,7 @@ class ProductController
                     $_POST['name'],
                     (int)$_POST['price'],
                     $_POST['productType'],
-                    'Size: ' . $_POST['size'] . ' MB'
+                    $_POST['size'] . ' MB'
                 )
             );
             return new Redirect('/');
@@ -71,7 +71,7 @@ class ProductController
                     $_POST['name'],
                     (int)$_POST['price'],
                     $_POST['productType'],
-                    'Weight: ' . $_POST['weight'] . ' kg'
+                    $_POST['weight'] . ' kg'
                 )
             );
             return new Redirect('/');
@@ -82,9 +82,9 @@ class ProductController
                 new CreateProductRequest(
                     $_POST['sku'],
                     $_POST['name'],
-                    (int)$_POST['price'],
+                    (int)number_format($_POST['price'], 2, '.'),
                     $_POST['productType'],
-                    'Dimension: ' . $_POST['height'] . 'x' . $_POST['width'] . 'x' . $_POST['length']
+                    $_POST['height'] . 'x' . $_POST['width'] . 'x' . $_POST['length']
                 )
             );
             return new Redirect('/');
@@ -95,9 +95,7 @@ class ProductController
 
     public function delete(): Redirect
     {
-
         if (isset($_POST['mass_delete_btn'])) {
-
             foreach ((array)$_POST['checkbox'] as $productId) {
                 $this->deleteProductService->handle((int)$productId);
             }

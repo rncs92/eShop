@@ -15,8 +15,6 @@ class DeleteProductService
 
     public function handle(int $productId): void
     {
-
         $this->productRepository->delete($productId);
-
     }
 }
