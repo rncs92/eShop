@@ -26,7 +26,7 @@ if($response instanceof TwigView) {
     $renderer = new Renderer();
 
     echo $renderer->render($response);
-    Session::unflash();
+    Session::unsetErrors();
 }
 
 if($response instanceof Redirect) {

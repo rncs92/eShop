@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace EShop\Repository\ProductRepository;
 
@@ -23,40 +23,16 @@ class PDOProductRepository implements ProductRepository
 
     public function all(): array
     {
-        $collection = [];
         $queryBuilder = $this->queryBuilder;
-        $dvds = $queryBuilder
-            ->select('*')
+        $products = $queryBuilder->select('*')
             ->from('products')
-            ->where('product_type = ?')
-            ->setParameter(0, 'DVD')
             ->fetchAllAssociative();
 
-        foreach ($dvds as $dvd) {
-            $collection[] = $this->buildDVDModel($dvd);
+        $collection = [];
+        foreach($products as $product) {
+            $collection[] = $this->buildModel($product);
         }
 
-        $books = $queryBuilder
-            ->select('*')
-            ->from('products')
-            ->where('product_type = ?')
-            ->setParameter(0, 'Book')
-            ->fetchAllAssociative();
-
-        foreach ($books as $book) {
-            $collection[] = $this->buildBookModel($book);
-        }
-
-        $furnitures = $queryBuilder
-            ->select('*')
-            ->from('products')
-            ->where('product_type = ?')
-            ->setParameter(0, 'Furniture')
-            ->fetchAllAssociative();
-
-        foreach ($furnitures as $furniture) {
-            $collection[] = $this->buildFurnitureModel($furniture);
-        }
         return $collection;
     }
 
@@ -85,7 +61,6 @@ class PDOProductRepository implements ProductRepository
         $product->setId((int)$this->connection->lastInsertId());
     }
 
-
     public function delete(int $productId): void
     {
         $queryBuilder = $this->queryBuilder;
@@ -97,39 +72,57 @@ class PDOProductRepository implements ProductRepository
         $queryBuilder->executeQuery();
     }
 
-    private function buildDVDModel($dvd): Product
+    public function getBySku(string $sku): ?Product
     {
-        return new DVD(
-            $dvd['sku'],
-            $dvd['name'],
-            (float)$dvd['price'],
-            $dvd['product_type'],
-            $dvd['attribute'],
-            $dvd['id']
-        );
+        $queryBuilder = $this->queryBuilder;
+        $sku = $queryBuilder->select('*')
+            ->from('products')
+            ->where('sku = ?')
+            ->setParameter(0, $sku)
+            ->fetchAssociative();
+
+        if (!$sku) {
+            return null;
+        }
+
+        return $this->buildModel($sku);
     }
 
-    private function buildBookModel($book): Product
-    {
-        return new Book(
-            $book['sku'],
-            $book['name'],
-            (float)$book['price'],
-            $book['product_type'],
-            $book['attribute'],
-            $book['id']
-        );
-    }
 
-    private function buildFurnitureModel($furniture): Product
+    private function buildModel($product): ?Product
     {
-        return new Furniture(
-            $furniture['sku'],
-            $furniture['name'],
-            (float)$furniture['price'],
-            $furniture['product_type'],
-            $furniture['attribute'],
-            $furniture['id']
-        );
+        if($product['product_type'] === 'DVD') {
+            return new DVD(
+                $product['sku'],
+                $product['name'],
+                (float)$product['price'],
+                $product['product_type'],
+                $product['attribute'],
+                (int)$product['id']
+            );
+        }
+
+        if($product['product_type'] === 'Book') {
+            return new Book(
+                $product['sku'],
+                $product['name'],
+                (float)$product['price'],
+                $product['product_type'],
+                $product['attribute'],
+                (int)$product['id']
+            );
+        }
+
+        if($product['product_type'] === 'Furniture') {
+            return new Furniture(
+                $product['sku'],
+                $product['name'],
+                (float)$product['price'],
+                $product['product_type'],
+                $product['attribute'],
+                (int)$product['id']
+            );
+        }
+        return null;
     }
 }

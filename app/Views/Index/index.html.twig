@@ -25,7 +25,7 @@
             <h1 class="font-bold text-4xl">Product List</h1>
             <div>
                 <button name="add_btn" id="add-btn"
-                        class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-transparent rounded hover:bg-red-200 hover:text-red-500 transition-colors duration-300">
+                        class="p-2 lg:px-4 md:mx-2 text-red-500 text-center border border-solid border-red-500 rounded hover:bg-red-500 hover:text-white transition-colors duration-300">
                     <a href="/addproduct">Add</a>
                 </button>
                 <button type="submit" name="delete-product-btn" id="delete-product-btn" value="1"
@@ -48,7 +48,8 @@
                         <p class="text-gray-500 mr-3 uppercase text-base text-center">{{ product.sku }}</p>
                         <p class="text-lg font-bold text-black truncate block capitalize text-center my-1">{{ product.name }}</p>
                         <div class="flex items-center justify-center">
-                            <p class="text-lg font-medium text-black cursor-auto my-1">${{ product.price|number_format(2, '.') }}</p>
+                            <p class="text-lg font-medium text-black cursor-auto my-1">
+                                ${{ product.price|number_format(2, '.') }}</p>
                         </div>
                         {% if product.getProductType == "DVD" %}
                             <div class="flex items-center justify-center">
@@ -74,5 +75,14 @@
         </section>
     </form>
 </div>
+<footer>
+    <div class="static bottom-0 w-full bg-red-100 py-2 md:py-4">
+        <div class="container mx-auto">
+            <div class="flex justify-center items-center">
+                Scandiweb Test assignment
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

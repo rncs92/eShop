@@ -28,6 +28,11 @@ class Session
         unset($_SESSION['_flash']);
     }
 
+    public static function unsetErrors()
+    {
+        unset($_SESSION['errors']);
+    }
+
     public static function destroy()
     {
         $_SESSION = [];
