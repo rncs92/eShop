@@ -21,7 +21,6 @@ $twig = new Environment($loader);
 $routes = require_once '../routes.php';
 $response = Router::route($routes);
 
-
 if($response instanceof TwigView) {
     $renderer = new Renderer();
 

@@ -14,7 +14,11 @@ class Renderer
         $loader = new FilesystemLoader('../app/Views/');
         $this->twig = new Environment($loader);
         $this->twig->addGlobal('session', $_SESSION);
-        $this->twig->addGlobal('errors', $_SESSION['errors']);
+        if (isset($_SESSION['errors'])) {
+            $this->twig->addGlobal('errors', $_SESSION['errors']);
+        } else {
+            $this->twig->addGlobal('errors', array());
+        }
     }
 
     public function render(TwigView $view): string

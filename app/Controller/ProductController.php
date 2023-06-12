@@ -28,7 +28,7 @@ class ProductController
         CreateFurnitureService $createFurnitureService,
         PDOProductRepository   $PDOProductRepository,
         DeleteProductService   $deleteProductService,
-        AddFormValidator $validator
+        AddFormValidator       $validator
     )
     {
         $this->createBookService = $createBookService;
