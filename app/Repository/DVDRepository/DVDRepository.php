@@ -2,8 +2,6 @@
 
 namespace EShop\Repository\DVDRepository;
 
-use EShop\Models\Products\Product;
-
 interface DVDRepository
 {
     public function all(): array;

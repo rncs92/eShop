@@ -51,7 +51,6 @@ class ProductController
 
     public function add(): TwigView
     {
-        //var_dump($_SESSION['errors']);
         return new TwigView('Product/addProduct', []);
     }
 
@@ -109,7 +108,6 @@ class ProductController
                 $this->deleteProductService->handle((int)$productId);
             }
         }
-
         return new Redirect('/');
     }
 }
