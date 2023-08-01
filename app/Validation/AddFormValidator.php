@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace EShop\Validation;
 
@@ -17,12 +17,6 @@ class AddFormValidator
 
     public function validateSKU(array $fields = []): void
     {
-        /*
-        if(strlen($fields['sku']) !== 8) {
-            $this->errors['sku'][] = 'SKU must be 8 symbols long!';
-        }
-        */
-
         $sku = $this->productRepository->getBySku($fields['sku']);
 
         if($sku !== null) {
