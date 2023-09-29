@@ -1,6 +1,6 @@
 # eShop
 <a href=https://ectomorphic-firer.000webhostapp.com/>
- <h2>Check it out!</h2>
+ Check it out!
 </a>
  
 <b>Installation guide:</b>
